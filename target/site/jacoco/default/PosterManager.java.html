@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PosterManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MOCKITO</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">PosterManager.java</span></div><h1>PosterManager.java</h1><pre class="source lang-java linenums">import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+
+public class PosterManager {
+<span class="fc" id="L10">    private Film[] films = new Film[0];</span>
+<span class="fc" id="L11">    private int filmsQuantity = 10;</span>
+
+<span class="fc" id="L13">    public PosterManager(int filmsQuantity) {</span>
+<span class="fc" id="L14">        this.filmsQuantity = filmsQuantity;</span>
+<span class="fc" id="L15">    }</span>
+
+    // Добавление нового фильма методом &quot;save&quot;
+    public void save(Film film) {
+
+<span class="fc" id="L20">        int length = films.length + 1;</span>
+<span class="fc" id="L21">        Film[] tmp = new Film[length];</span>
+
+<span class="fc" id="L23">        System.arraycopy(films, 0, tmp, 0, films.length);</span>
+
+<span class="fc" id="L25">        int lastIndex = tmp.length - 1;</span>
+<span class="fc" id="L26">        tmp[lastIndex] = film;</span>
+<span class="fc" id="L27">        films = tmp;</span>
+<span class="fc" id="L28">    }</span>
+
+    //Вывод всех фильмов в порядке добавления
+    public Film[] findAll() {
+<span class="fc" id="L32">        return films;</span>
+    }
+
+
+    public Film[] findLast() {
+
+<span class="fc" id="L38">        int resultLength = films.length;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (resultLength &gt; filmsQuantity) {</span>
+<span class="fc" id="L40">            resultLength = filmsQuantity;</span>
+        }
+<span class="fc" id="L42">        Film[] result = new Film[resultLength];</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (int i = 0; i &lt; resultLength; i++) {</span>
+<span class="fc" id="L44">            int index = films.length - i - 1;</span>
+<span class="fc" id="L45">            result[i] = films[index];</span>
+        }
+<span class="fc" id="L47">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
